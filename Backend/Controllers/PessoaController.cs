@@ -19,9 +19,7 @@ public class PessoaController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Pessoa>>> GetPessoas()
     {
-        return await _context.Pessoas
-            .Include(p => p.Transacoes)
-            .ToListAsync();
+        return await _context.Pessoas.ToListAsync();
     }
 
     [HttpPost]

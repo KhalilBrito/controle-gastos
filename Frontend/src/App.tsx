@@ -1,5 +1,6 @@
 import Pessoas from "./components/Pessoas";
 import "./App.css";
+import Transacoes from "./components/Transacoes";
 
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
       </h1>
 
       <Pessoas />
+
+      <Transacoes />
 
     </div>
   )

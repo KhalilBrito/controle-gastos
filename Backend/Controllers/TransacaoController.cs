@@ -19,12 +19,11 @@ public class TransacaoController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Transacao>>> GetTransacoes()
     {
-        return await _context.Transacoes
-            .Include(t => t.Pessoa)
-            .ToListAsync();
+        return await _context.Transacoes.ToListAsync();
     }
 
     [HttpPost]
+    
     public async Task<ActionResult<Transacao>> PostTransacao(Transacao transacao)
     {
         var pessoa = await _context.Pessoas.FindAsync(transacao.PessoaId);
