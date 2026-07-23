@@ -42,7 +42,10 @@ export default function Dashboard({ refresh }: DashboardProps) {
 
         <div className="resumo-card">
             <h3>Saldo</h3>
-            <p>R$ {dados.totalGeral.saldo}</p>
+            <p>R$ {dados.totalGeral.saldo.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+})}</p>
         </div>
 
     </div>

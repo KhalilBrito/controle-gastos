@@ -103,11 +103,19 @@ export default function Transacoes({ refresh, atualizar }: TransacoesProps) {
 
                 <div key={t.id} className="lista-item">
 
-                    {t.descricao} -
-                    R$ {t.valor} -
-                    {t.tipo}
+    <div>
+        <strong>{t.descricao}</strong>
+        <br />
+        Pessoa: {pessoas.find(p => p.id === t.pessoaId)?.nome}
+        <br />
+        {t.tipo}
+    </div>
 
-                </div>
+    <strong>
+        R$ {t.valor.toFixed(2)}
+    </strong>
+
+</div>
 
             ))}
 
