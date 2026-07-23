@@ -4,7 +4,12 @@ import type { Transacao } from "../types/Transacao";
 import { listarPessoas } from "../services/pessoaService";
 import { listarTransacoes, criarTransacao } from "../services/transacaoService";
 
-export default function Transacoes() {
+interface TransacoesProps {
+    refresh: number;
+    atualizar: () => void;
+}
+
+export default function Transacoes({ refresh, atualizar }: TransacoesProps) {
 
     const [transacoes, setTransacoes] = useState<Transacao[]>([]);
     const [pessoas, setPessoas] = useState<Pessoa[]>([]);
@@ -21,13 +26,6 @@ export default function Transacoes() {
 
     async function salvar() {
 
-        console.log({
-            descricao,
-            valor,
-            tipo,
-            pessoaId
-});
-
         await criarTransacao({
             descricao,
             valor,
@@ -41,11 +39,13 @@ export default function Transacoes() {
         setPessoaId(0);
 
         await carregarDados();
+
+        atualizar();
     }
 
     useEffect(() => {
         carregarDados();
-    }, []);
+    }, [refresh]);
 
     return (
 
@@ -78,21 +78,18 @@ export default function Transacoes() {
                 value={pessoaId}
                 onChange={e => setPessoaId(Number(e.target.value))}
             >
-
                 <option value={0}>
                     Selecione
                 </option>
 
-                {
-                    pessoas.map(p => (
-                        <option
-                            key={p.id}
-                            value={p.id}
-                        >
-                            {p.nome}
-                        </option>
-                    ))
-                }
+                {pessoas.map(p => (
+                    <option
+                        key={p.id}
+                        value={p.id}
+                    >
+                        {p.nome}
+                    </option>
+                ))}
 
             </select>
 
@@ -102,19 +99,17 @@ export default function Transacoes() {
 
             <hr />
 
-            {
-                transacoes.map(t => (
+            {transacoes.map(t => (
 
-                    <div key={t.id}>
+                <div key={t.id}>
 
-                        {t.descricao} -
-                        R$ {t.valor} -
-                        {t.tipo}
+                    {t.descricao} -
+                    R$ {t.valor} -
+                    {t.tipo}
 
-                    </div>
+                </div>
 
-                ))
-            }
+            ))}
 
         </div>
 

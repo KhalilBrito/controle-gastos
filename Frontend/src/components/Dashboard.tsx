@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { obterTotais } from "../services/totaisService";
 import type { ResumoTotais } from "../types/ResumoTotais";
 
-export default function Dashboard() {
+interface DashboardProps {
+    refresh: number;
+}
+
+export default function Dashboard({ refresh }: DashboardProps) {
 
     const [dados, setDados] = useState<ResumoTotais | null>(null);
 
@@ -13,7 +17,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         carregar();
-    }, []);
+    }, [refresh]);
 
     if (!dados) {
         return <div className="card">Carregando...</div>;
