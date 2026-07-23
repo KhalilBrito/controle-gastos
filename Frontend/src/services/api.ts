@@ -20,13 +20,17 @@ export async function apiPost(endpoint: string, data: unknown) {
         body: JSON.stringify(data),
     });
 
+    const texto = await response.text();
+
+    console.log("Status:", response.status);
+    console.log("Resposta:", texto);
+
     if (!response.ok) {
-        throw new Error("Erro ao enviar dados");
+        throw new Error(texto);
     }
 
-    return response.json();
+    return texto ? JSON.parse(texto) : null;
 }
-
 
 export async function apiDelete(endpoint: string) {
     const response = await fetch(`${API_URL}/${endpoint}`, {
