@@ -27,7 +27,7 @@ export default function Pessoas() {
         setNome("");
         setIdade(0);
 
-        carregarPessoas();
+        await carregarPessoas();
     }
 
 

@@ -37,8 +37,10 @@ export default function Transacoes() {
 
         setDescricao("");
         setValor(0);
+        setTipo("Despesa");
+        setPessoaId(0);
 
-        carregarDados();
+        await carregarDados();
     }
 
     useEffect(() => {
