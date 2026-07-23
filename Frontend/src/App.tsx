@@ -1,27 +1,31 @@
-import Pessoas from "./components/Pessoas";
+import { useState } from "react";
 import "./App.css";
-import Transacoes from "./components/Transacoes";
-import Dashboard from "./components/Dashboard";
 
+import Dashboard from "./components/Dashboard";
+import Pessoas from "./components/Pessoas";
+import Transacoes from "./components/Transacoes";
 
 function App() {
 
-  return (
-    <div className="container">
+    const [refresh, setRefresh] = useState(0);
 
-      <h1>
-        Controle de Gastos
-      </h1>
+    function atualizarTudo() {
+        setRefresh(valor => valor + 1);
+    }
 
-      <Dashboard />
+    return (
+        <div className="container">
 
-      <Pessoas />
+            <h1>Controle de Gastos</h1>
 
-      <Transacoes />
+            <Dashboard refresh={refresh} />
 
-    </div>
-  )
+            <Pessoas atualizar={atualizarTudo} refresh={refresh} />
+
+            <Transacoes atualizar={atualizarTudo} refresh={refresh} />
+
+        </div>
+    );
 }
-
 
 export default App;
