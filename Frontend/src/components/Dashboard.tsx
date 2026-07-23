@@ -26,14 +26,27 @@ export default function Dashboard({ refresh }: DashboardProps) {
     return (
         <div className="card">
 
-            <h2>Resumo Financeiro</h2>
+    <h2>Resumo Financeiro</h2>
 
-            <p><strong>Receitas:</strong> R$ {dados.totalGeral.totalReceitas}</p>
+    <div className="resumo">
 
-            <p><strong>Despesas:</strong> R$ {dados.totalGeral.totalDespesas}</p>
-
-            <p><strong>Saldo:</strong> R$ {dados.totalGeral.saldo}</p>
-
+        <div className="resumo-card">
+            <h3>Receitas</h3>
+            <p>R$ {dados.totalGeral.totalReceitas}</p>
         </div>
+
+        <div className="resumo-card">
+            <h3>Despesas</h3>
+            <p>R$ {dados.totalGeral.totalDespesas}</p>
+        </div>
+
+        <div className="resumo-card">
+            <h3>Saldo</h3>
+            <p>R$ {dados.totalGeral.saldo}</p>
+        </div>
+
+    </div>
+
+</div>
     );
 }

@@ -73,7 +73,7 @@ export default function Pessoas({ refresh, atualizar }: PessoasProps) {
 
             {pessoas.map(pessoa => (
 
-                <div key={pessoa.id}>
+                <div key={pessoa.id} className="lista-item">
 
                     {pessoa.nome} - {pessoa.idade} anos
 

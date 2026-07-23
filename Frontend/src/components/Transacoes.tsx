@@ -101,7 +101,7 @@ export default function Transacoes({ refresh, atualizar }: TransacoesProps) {
 
             {transacoes.map(t => (
 
-                <div key={t.id}>
+                <div key={t.id} className="lista-item">
 
                     {t.descricao} -
                     R$ {t.valor} -
